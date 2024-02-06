@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Software</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #3498db;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #savePdfBtn {
+            background-color: #3498db;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h2>Billing Software</h2>
+
+    <form id="billingForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <!-- Add this inside the #container div, above the form -->
+        <span id="currentDateTime"></span>
+
+        <label for="contact">Contact Number:</label>
+        <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required>
+
+        <table id="billingTable">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <button type="button" onclick="addRow()">Add Row</button>
+        <button type="button" onclick="calculateTotal()">Calculate Total</button>
+        <button type="button" onclick="savePdf()" id="savePdfBtn">Save PDF</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+<script>
+    function addRow() {
+    const table = document.getElementById('billingTable').getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow(table.rows.length);
+
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+    const cell4 = newRow.insertCell(3);
+    const cell5 = newRow.insertCell(4);
+
+    cell1.innerHTML = '<input type="text" name="item[]">';
+    cell2.innerHTML = '<input type="number" name="quantity[]">';
+    cell3.innerHTML = '<input type="number" name="price[]">';
+    cell4.innerHTML = '<span class="total"></span>';
+    cell5.innerHTML = '<button type="button" onclick="deleteRow(this)">Remove</button>';
+
+    // Set the current date and time
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString();
+    const formattedTime = currentDate.toLocaleTimeString();
+    document.getElementById('currentDateTime').innerText = `Date: ${formattedDate} - Time: ${formattedTime}`;
+}
+
+    function addRow() {
+        const table = document.getElementById('billingTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(table.rows.length);
+
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+
+        cell1.innerHTML = '<input type="text" name="item[]">';
+        cell2.innerHTML = '<input type="number" name="quantity[]">';
+        cell3.innerHTML = '<input type="number" name="price[]">';
+        cell4.innerHTML = '<span class="total"></span>';
+        cell5.innerHTML = '<button type="button" onclick="deleteRow(this)">Remove</button>';
+    }
+
+    function deleteRow(btn) {
+        const row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        calculateTotal();
+    }
+
+    function calculateTotal() {
+        const table = document.getElementById('billingTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        let grandTotal = 0;
+
+        for (let i = 0; i < rows.length; i++) {
+            const quantity = parseFloat(rows[i].cells[1].getElementsByTagName('input')[0].value) || 0;
+            const price = parseFloat(rows[i].cells[2].getElementsByTagName('input')[0].value) || 0;
+            const total = quantity * price;
+
+            rows[i].cells[3].getElementsByClassName('total')[0].innerText = total.toFixed(2);
+            grandTotal += total;
+        }
+
+        document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+    }
+
+    function savePdf() {
+        // Implement PDF saving logic here
+        alert('PDF saved!');
+    }
+</script>
+
+</body>
+</html>

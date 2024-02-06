@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcation</title>
+</head>
+
+<body>
+    <script>
+
+        // console.log("Hello");
+        // "abc".toUpperCase();
+        // "xyz".toUpperCase;
+        // [1,2,3].push(4);
+
+        // function myFuncation(){
+        //     console.log("Hello Vivek ");
+        //     console.log("I am learning to JS :) ");
+        // }
+        // myFuncation();
+
+
+        // function myFuncation(msg){
+        //     console.log(msg)
+        // }
+        // myFuncation("i love JavaScript",68);// this is argument
+
+        //    // calculate the function
+        // function sum(a,b){
+        //     console.log(a+b);
+        // }
+        // sum(15,15); // o/p 30
+
+
+        // //return funcation 
+        // function sum(a, b) {
+        //     // funtion loacal variable use only this block 
+        //     console.log("before return ");
+        //     s = a + b;
+        //     return s;
+        //     console.log("after return ");
+        // }
+        // let val = sum(14, 9);
+        // console.log(val);
+
+
+        // arrow functions : compact way to writing a funcation 
+        // sum funaction 
+        // function sum(a,b){
+        //     return a+b;
+        // }
+        // sum arrow funcation // modern function 
+        // const arrowSum = (a,b)=>{
+        //     console.log(a+b);
+        // };
+        // arrowSum(51,8);
+        // console.log(arrowSum);
+
+
+
+        // function mul(a,b){
+        //     return a*b;
+        // };
+
+        // const multiple = (a,b)=>{
+        //     console.log(a*b);
+        // };
+        // multiple(5,5);
+        // console.log(multiple);
+
+        // const print=()=>{
+        //     console.log("hello");
+        // };
+        // print();
+
+        //Q1 the return the vowels in the string
+
+        // function countVowels(str){
+        //     let count =0;
+        //     for(const char of str){
+                
+        //         if(char ==="a" || char ==="A" ||
+        //            char ==="e" || char ==="E" ||
+        //            char ==="i" || char ==="I" || 
+        //            char ==="o" || char ==="O" || 
+        //            char ==="u" || char ==="U" ) {
+        //                count++;
+        //             }
+        //         }
+        //         return count;
+        //     }
+        //     countVowels("VivekDurgule12");
+
+
+        //Q2 the Q1 same taks perform on arrow function
+
+        // const countvow =(str)=>{
+        //     let count =0;
+        //     for(const char of str){
+        //         if(char ==="a" || char ==="A" ||
+        //            char ==="e" || char ==="E" ||
+        //            char ==="i" || char ==="I" || 
+        //            char ==="o" || char ==="O" || 
+        //            char ==="u" || char ==="U" ) {
+        //                count++;
+        //             }
+        //         }
+        //         return count;
+        //     }
+        //     countvow("VivekDurgule12");
+
+        // ForEach loop in array  : CallbackFunction = here , *. it is a function to execute for each element in the array.  *.A callback us function passed as an argument to another function.
+ 
+            // let arr =[1,2,3,4,5,6,7,8,9,0];
+            // arr.forEach(function printVal(val){
+            //     console.log(val);
+            // });
+
+
+            // using a arrow function
+            // let arr = ["Kolhapur ", "Mumbai", "Pune", "nashhik","nagpur"];
+            // arr.forEach((val,idx,arr)=> {
+            //     console.log(idx,val.toUpperCase(),arr);
+            // });
+
+            // Higher order function OR Higher order Methos 
+            // HOF OR HOM 
+
+
+            // practice
+            //Q calculte squre of root number in given array 
+            // let num =[1,2,3,4,5,6,7];
+
+            // num.forEach((num)=>{
+            //     console.log(num*num);
+            // });
+
+            // let nums=[68,69,70];
+            // let calcSqure =(num =>{
+            //     console.log(num*num);
+            // });
+            // nums.forEach(calcSqure);
+
+
+            // Some More Array Methods : creates a new array with result of some operation . the value its callback return are used to from new array 
+
+
+            // Map is use for store value to in the new array 
+            // let nums=[68,69,70];
+            // let newArray = nums.map((val)=>{
+            //     return val*val;
+            // });
+            // console.log(newArray);
+
+            // filter Method : create a new array of elemnts that give ture for conditonFilter. Eg. all even elements 
+
+            // let arr =[0,1,2,3,4,5,6,7,8,9];
+            // let even = arr.filter((val)=>{
+            //     return val % 2===0;
+            // });
+            // console.log(even);
+
+            
+            //reduce Method : perfroms some operation & reduce the array to single value. it retuns that single value
+        
+            // const arr =[1,2,3,4];
+            // const output = arr.reduce((res,curr)=>{
+            //     return res+curr;
+            // });
+            // console.log(output);
+
+
+            // const arr =[,2,6,8,5,6,45,7,694,61,5647,61,22,3,68,103];
+
+            // const result = arr.reduce((prev , curr)=>{
+            //     return prev > curr ? prev : curr;
+            // });
+
+            // console.log(`This is a largest Number ${result}`);
+
+
+            // practice 
+            //Q filert out the marks in the array
+
+        //    let marks =[8,69,45,58,69,95,68,70,75,90,92.5];
+
+        //    let Toppers =marks.filter((val)=>{
+        //         return val>90;
+        //     });
+
+        //     console.log(Toppers);
+
+
+            //Q create a number form user 1 to n
+
+        //     let num=prompt("Enter a number ");
+        //     let arr=[];
+        //     for(let i=1 ; i<=num;i++){
+        //         arr[i-1]=i;
+        //     }
+        //     console.log(arr);
+        //     let sum=arr.reduce((res,  curr)=>{
+        //         return res + curr;
+        //     });
+        //  console.log(sum);
+
+        // let num = prompt ("Enter a Number ");
+
+        // let arr=[];
+
+        // for(let i =1 ; i<= num ; i++){
+        //     arr[i-1]=i;
+        // }
+        // console.log(arr);
+        // let fact=arr.reduce((res,  curr)=>{
+        //         return res * curr;
+        //     });
+        //  console.log(fact);
+            
+
+    </script>
+</body>
+
+</html>
